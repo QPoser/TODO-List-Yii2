@@ -37,7 +37,7 @@ class UserManageService
 
         $sent = $this->mailer
             ->compose(
-                ['html' => 'mail/signup/emailConfirmToken-html', 'text' => 'mail/signup/emailConfirmToken-text'],
+                ['html' => 'signup/emailConfirmToken-html', 'text' => 'signup/emailConfirmToken-text'],
                 ['user' => $user]
             )
             ->setTo($form->email)
@@ -48,6 +48,13 @@ class UserManageService
             throw new RuntimeException('Email sending error.');
         }
 
+    }
+
+    public function save(User $user)
+    {
+        if (!$user->save()) {
+            throw new \RuntimeException('Saving error.');
+        }
     }
 
 
