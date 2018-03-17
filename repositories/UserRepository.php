@@ -22,6 +22,11 @@ class UserRepository
         return $this->getBy(['email_confirm_token' => $token]);
     }
 
+    public function findByUsername($username): User
+    {
+        return $this->getBy(['username' => $username]);
+    }
+
     public function save(User $user): void
     {
         if (!$user->save()) {

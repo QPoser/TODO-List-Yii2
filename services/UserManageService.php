@@ -1,6 +1,7 @@
 <?php
 
 namespace app\services;
+use app\forms\LoginForm;
 use app\forms\RegisterForm;
 use app\models\User;
 use app\repositories\UserRepository;
@@ -48,6 +49,15 @@ class UserManageService
             throw new RuntimeException('Email sending error.');
         }
 
+    }
+
+    public function auth(LoginForm $form): User
+    {
+        $user = $this->users->findByUsername($form->username);
+        if (!$user || !$user->isActive() || !$user->validatePassword($form->password)) {
+            throw new \DomainException('Underfined user of password.');
+        }
+        return $user;
     }
 
     public function confirm(string $token): void

@@ -9,9 +9,11 @@
 namespace app\controllers;
 
 
+use app\forms\LoginForm;
 use app\forms\RegisterForm;
 use app\services\UserManageService;
 use Yii;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 
 class UserController extends Controller
@@ -33,7 +35,7 @@ class UserController extends Controller
             try {
                 $this->service->signup($model);
                 Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-                return $this->redirect(['page/index']);
+                return $this->redirect('/page/index');
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
@@ -47,9 +49,31 @@ class UserController extends Controller
 
     public function actionLogin()
     {
-        return $this->render('login', [
+        if (!Yii::$app->user->isGuest) {
+            return $this->redirect('/page/index');
+        }
 
+        $form = new LoginForm();
+        if ($form->load(Yii::$app->request->post()) && $form->login()) {
+            try {
+                $user = $this->service->auth($form);
+                Yii::$app->user->login($user, $form->rememberMe ? Yii::$app->params['user.rememberMeDuration'] : 0);
+                return $this->render('/page/index');
+            } catch (\DomainException $e) {
+                throw new BadRequestHttpException($e->getMessage(), 0, $e);
+            }
+        }
+
+        return $this->render('login', [
+            'model' => $form,
         ]);
+    }
+
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->render('/page/index');
     }
 
     public function actionConfirm($token)
@@ -57,7 +81,7 @@ class UserController extends Controller
         try {
             $this->service->confirm($token);
             Yii::$app->session->setFlash('success', 'Your email is confirmed.');
-            return $this->redirect(['user/login']);
+            return $this->redirect(['/user/login']);
         } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());

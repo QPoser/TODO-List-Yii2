@@ -12,6 +12,11 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_WAIT = 0;
     const STATUS_ACTIVE = 10;
 
+    public static function findByUsername($username): self
+    {
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+    }
+
     public static function requestSignup(string $username, string $email, string $password): self
     {
         $user = new User();
@@ -21,6 +26,7 @@ class User extends ActiveRecord implements IdentityInterface
         $user->created_at = time();
         $user->status = self::STATUS_WAIT;
         $user->generateEmailConfirmToken();
+        $user->generateAuthKey();
         return $user;
     }
 
@@ -37,6 +43,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function removeEmailConfirmToken()
     {
         $this->email_confirm_token = null;
+    }
+
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
     public function confirmSignup(): void
@@ -63,6 +74,11 @@ class User extends ActiveRecord implements IdentityInterface
         return '{{%user}}';
     }
 
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
+    }
+
 
     /**
      * Finds an identity by the given ID.
@@ -73,7 +89,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        // TODO: Implement findIdentity() method.
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -87,7 +103,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        // TODO: Implement findIdentityByAccessToken() method.
+        throw new \DomainException('findIdentityByAccessToken is not implemented.');
     }
 
     /**
@@ -96,7 +112,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getId()
     {
-        // TODO: Implement getId() method.
+        return $this->getPrimaryKey();
     }
 
     /**
@@ -113,7 +129,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
-        // TODO: Implement getAuthKey() method.
+        return $this->auth_key;
     }
 
     /**
@@ -126,6 +142,6 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        // TODO: Implement validateAuthKey() method.
+        return $this->getAuthKey() === $authKey;
     }
 }
