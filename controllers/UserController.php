@@ -47,7 +47,9 @@ class UserController extends Controller
 
     public function actionLogin()
     {
+        return $this->render('login', [
 
+        ]);
     }
 
     public function actionConfirm($token)
@@ -55,7 +57,7 @@ class UserController extends Controller
         try {
             $this->service->confirm($token);
             Yii::$app->session->setFlash('success', 'Your email is confirmed.');
-            return $this->redirect(['login']);
+            return $this->redirect(['user/login']);
         } catch (\DomainException $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());

@@ -50,6 +50,18 @@ class UserManageService
 
     }
 
+    public function confirm(string $token): void
+    {
+        if (empty($token)) {
+            throw new \DomainException('Empty confirm token.');
+        }
+
+        $user = $this->users->getByEmailConfirmToken($token);
+
+        $user->confirmSignup();
+        $this->save($user);
+    }
+
     public function save(User $user)
     {
         if (!$user->save()) {

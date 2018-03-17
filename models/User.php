@@ -34,6 +34,30 @@ class User extends ActiveRecord implements IdentityInterface
         $this->email_confirm_token = Yii::$app->security->generateRandomString();
     }
 
+    public function removeEmailConfirmToken()
+    {
+        $this->email_confirm_token = null;
+    }
+
+    public function confirmSignup(): void
+    {
+        if (!$this->isWait()) {
+            throw new \DomainException('User is already active.');
+        }
+        $this->status = self::STATUS_ACTIVE;
+        $this->removeEmailConfirmToken();
+    }
+
+    public function isWait(): bool
+    {
+        return $this->status == self::STATUS_WAIT;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status == self::STATUS_ACTIVE;
+    }
+
     public static function tableName()
     {
         return '{{%user}}';
