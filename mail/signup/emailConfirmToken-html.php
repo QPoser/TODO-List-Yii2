@@ -2,7 +2,6 @@
 
 
 use yii\helpers\Html;
-
 $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['user/confirm', 'token' => $user->email_confirm_token]);
 ?>
 <div class="password-reset">

@@ -54,7 +54,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'page/index',
-                '<_a:login|logout>' => 'user/<_a>',
+                '<_a:login|logout|register>' => 'user/<_a>',
 
                 '<_c:[\w\-]+>' => '<_c>/index',
                 '<_c:[\w\-]+>/<_a:[\w-]+>' => '<_c>/<_a>',

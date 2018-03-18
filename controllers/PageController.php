@@ -21,5 +21,10 @@ class PageController extends Controller
         return $this->render('index');
     }
 
+    public function actionDesk()
+    {
+        return $this->render('desk');
+    }
+
 
 }
