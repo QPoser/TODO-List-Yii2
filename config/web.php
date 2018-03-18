@@ -47,14 +47,19 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'hostInfo' => 'http://yii.loc/',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '' => 'page/index',
+                '<_a:login|logout>' => 'user/<_a>',
+
+                '<_c:[\w\-]+>' => '<_c>/index',
+                '<_c:[\w\-]+>/<_a:[\w-]+>' => '<_c>/<_a>',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

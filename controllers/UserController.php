@@ -35,7 +35,7 @@ class UserController extends Controller
             try {
                 $this->service->signup($model);
                 Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-                return $this->redirect('/page/index');
+                return $this->render('/page/index');
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
@@ -50,7 +50,7 @@ class UserController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->redirect('/page/index');
+            return $this->render('/page/index');
         }
 
         $form = new LoginForm();
