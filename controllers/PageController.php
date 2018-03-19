@@ -26,5 +26,10 @@ class PageController extends Controller
         return $this->render('desk');
     }
 
+    public function actionRedirect()
+    {
+        return $this->redirect(['deal/create']);
+    }
+
 
 }

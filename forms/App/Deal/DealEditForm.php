@@ -11,13 +11,28 @@ namespace app\forms\App\Deal;
 /*
  *
  */
-class DealEditForm
+use app\models\App\Deal;
+use yii\base\Model;
+
+class DealEditForm extends Model
 {
     public $name;
     public $priority;
     public $promptly;
     public $end_date;
     public $task_id;
+
+    public function __construct(Deal $deal, array $config = [])
+    {
+        if ($deal) {
+            $this->name = $deal->name;
+            $this->priority = $deal->priority;
+            $this->promptly = $deal->promptly;
+            $this->end_date = $deal->end_date;
+            $this->task_id = $deal->task_id;
+        }
+        parent::__construct($config);
+    }
 
     public function rules()
     {
