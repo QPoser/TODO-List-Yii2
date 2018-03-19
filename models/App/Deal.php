@@ -50,4 +50,9 @@ class Deal extends ActiveRecord
         $this->complete = 0;
     }
 
+    public static function tableName()
+    {
+        return '{{%deals}}';
+    }
+
 }
