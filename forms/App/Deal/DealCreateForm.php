@@ -12,6 +12,7 @@ namespace app\forms\App\Deal;
  * @var string name
  * @var created_at
  * @var priority
+ * @var promptly
  * @var complete
  * @var end_date
  * @var task_id
@@ -22,15 +23,15 @@ class DealCreateForm extends Model
 {
     public $name;
     public $priority;
-    public $complete;
+    public $promptly;
     public $end_date;
     public $task_id;
 
     public function rules()
     {
         return [
-            [['name', 'priority', 'end_date'], 'required'],
-            [['complete'], 'boolean'],
+            [['name', 'end_date'], 'required'],
+            [['priority', 'promptly'], 'boolean'],
             [['name'], 'string', 'max' => 255],
             ['task_id', 'integer'],
         ];
