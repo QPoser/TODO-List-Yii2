@@ -31,7 +31,7 @@ class DealController extends Controller
     {
         $deal = $this->findModel($id);
 
-        $this->render('/app/deal/view', [
+        return $this->render('/app/deal/view', [
             'deal' => $deal,
         ]);
     }

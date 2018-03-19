@@ -16,6 +16,7 @@ class m180319_152659_create_deal_table extends Migration
 
         $this->createTable('{{%deals}}', [
             'id' => $this->primaryKey(),
+            'name' => $this->string(),
             'created_at' => $this->integer()->unsigned()->notNull(),
             'promptly' => $this->smallInteger(),
             'priority' => $this->smallInteger(),

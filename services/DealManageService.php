@@ -35,6 +35,7 @@ class DealManageService
         $deal = Deal::create(
             $form->name,
             $form->priority,
+            $form->promptly,
             $form->end_date,
             $form->task_id ? $task->getPrimaryKey() : 0
         );
