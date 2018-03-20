@@ -59,4 +59,20 @@ class DealManageService
         $this->deals->save($deal);
     }
 
+    public function setComplete($id): Deal
+    {
+        $deal = $this->deals->get($id);
+        $deal->setComplete();
+        $this->deals->save($deal);
+        return $deal;
+    }
+
+    public function setUncomplete($id): Deal
+    {
+        $deal = $this->deals->get($id);
+        $deal->setUncomplete();
+        $this->deals->save($deal);
+        return $deal;
+    }
+
 }

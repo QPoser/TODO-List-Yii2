@@ -27,6 +27,24 @@ class DealController extends Controller
         parent::__construct($id, $module, $config);
     }
 
+    public function actionComplete($id)
+    {
+        $deal = $this->service->setComplete($id);
+
+        return $this->render('/app/deal/view', [
+            'deal' => $deal,
+        ]);
+    }
+
+    public function actionUncomplete($id)
+    {
+        $deal = $this->service->setUncomplete($id);
+
+        return $this->render('/app/deal/view', [
+           'deal' => $deal,
+        ]);
+    }
+
     public function actionView($id)
     {
         $deal = $this->findModel($id);
@@ -72,6 +90,18 @@ class DealController extends Controller
             'model' => $form,
             'deal' => $deal,
         ]);
+    }
+
+    public function actionDelete($id)
+    {
+        try {
+            $this->findModel($id)->delete();
+        } catch (\DomainException $e) {
+            Yii::$app->errorHandler->logException($e);
+            Yii::$app->session->setFlash('error', $e->getMessage());
+        }
+        return $this->redirect(['page/desk']);
+
     }
 
     protected function findModel($id): Deal

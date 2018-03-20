@@ -10,11 +10,24 @@ namespace app\controllers;
 
 
 use app\forms\RegisterForm;
+use app\models\User;
+use app\services\DealManageService;
+use app\services\UserManageService;
 use Yii;
 use yii\web\Controller;
 
 class PageController extends Controller
 {
+
+    public $deals;
+    public $users;
+
+    public function __construct($id, $module, DealManageService $deals, UserManageService $users, array $config = [])
+    {
+        $this->users = $users;
+        $this->deals = $deals;
+        parent::__construct($id, $module, $config);
+    }
 
     public function actionIndex()
     {
@@ -23,7 +36,11 @@ class PageController extends Controller
 
     public function actionDesk()
     {
-        return $this->render('desk');
+        $user = User::findOne(Yii::$app->user->id);
+        $deals = $user->deals;
+        return $this->render('desk', [
+            'deals' => $deals,
+        ]);
     }
 
     public function actionRedirect()
