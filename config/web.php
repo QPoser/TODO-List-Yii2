@@ -7,7 +7,7 @@ $config = [
     'id' => 'basic',
     'name' => 'Basic task manager',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['app\bootstrap\SetUp'],
+    'bootstrap' => ['log', 'app\bootstrap\SetUp'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -39,11 +39,16 @@ $config = [
             'useFileTransport' => true,
         ],
         'log' => [
+            'flushInterval' => 1,
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'exportInterval' => '1',
+                    'categories' => ['app_category'],
+                    'levels' => ['info'],
+                    'logFile' => '@app/userLog.txt',
+                    'logVars' => []
                 ],
             ],
         ],

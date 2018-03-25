@@ -1,0 +1,80 @@
+2018-03-25 17:10:27 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] edit task
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:40
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:40
+2018-03-25 17:12:26 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] []
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:40
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:40
+2018-03-25 17:12:26 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] edit task
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:41
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:40
+2018-03-25 17:12:48 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] []
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:40
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:40
+2018-03-25 17:12:48 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] edit task
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:41
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:40
+2018-03-25 17:13:32 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] [
+    'name' => 'new taskis1',
+]
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:40
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:40
+2018-03-25 17:13:32 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] edit task
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:41
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:40
+2018-03-25 17:13:55 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] [
+    'name' => null,
+    'created_at' => null,
+    'user_id' => null,
+    'id' => null,
+]
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:40
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:32
+2018-03-25 17:13:55 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] edit task
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:41
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:32
+2018-03-25 17:14:28 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] false
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:40
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:40
+2018-03-25 17:14:28 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] [
+    'name' => 'news',
+]
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:41
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:40
+2018-03-25 17:14:28 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] edit task
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:42
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:40
+2018-03-25 17:14:41 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] true
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:40
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:32
+2018-03-25 17:14:41 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] [
+    'name' => null,
+    'created_at' => null,
+    'user_id' => null,
+    'id' => null,
+]
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:41
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:32
+2018-03-25 17:14:41 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] edit task
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:42
+    in C:\OpenServer\domains\yii.loc\repositories\TaskRepository.php:26
+    in C:\OpenServer\domains\yii.loc\services\TaskManageService.php:32
+2018-03-25 17:17:37 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] User 1 delete task - 5name = 22
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:51
+    in C:\OpenServer\domains\yii.loc\controllers\TaskController.php:82
+2018-03-25 17:17:55 [127.0.0.1][1][5ujandl74s4mdesbosf1n639h0u3d00q][info][app_category] User 1 delete task - 4 name = news2
+    in C:\OpenServer\domains\yii.loc\models\App\Task.php:51
+    in C:\OpenServer\domains\yii.loc\controllers\TaskController.php:82
