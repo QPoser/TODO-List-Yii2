@@ -11,10 +11,12 @@ namespace app\controllers;
 
 use app\forms\App\Deal\DealCreateForm;
 use app\forms\App\Deal\DealEditForm;
+use app\forms\App\Search\DealSearch;
 use app\models\App\Deal;
 use app\models\User;
 use app\services\DealManageService;
 use Yii;
+use yii\data\Pagination;
 use yii\web\Controller;
 
 class DealController extends Controller
@@ -35,18 +37,14 @@ class DealController extends Controller
     {
         $deal = $this->service->setComplete($id);
 
-        return $this->render('/app/deal/view', [
-            'deal' => $deal,
-        ]);
+        return $this->redirect(['deal/deals']);
     }
 
     public function actionUncomplete($id)
     {
         $deal = $this->service->setUncomplete($id);
 
-        return $this->render('/app/deal/view', [
-           'deal' => $deal,
-        ]);
+        return $this->redirect(['deal/deals']);
     }
 
     public function actionView($id)
@@ -57,6 +55,23 @@ class DealController extends Controller
             'deal' => $deal,
         ]);
     }
+
+
+    public function actionDeals()
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['user/login']);
+        }
+
+        $searchModel = new DealSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('/app/deal/desk', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
 
     public function actionCreate()
     {

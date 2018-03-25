@@ -62,7 +62,7 @@ class UserController extends Controller
             try {
                 $user = $this->service->auth($form);
                 Yii::$app->user->login($user, $form->rememberMe ? Yii::$app->params['user.rememberMeDuration'] : 0);
-                return $this->redirect(['page/deals']);
+                return $this->redirect(['deal/deals']);
             } catch (\DomainException $e) {
                 throw new BadRequestHttpException($e->getMessage(), 0, $e);
             }

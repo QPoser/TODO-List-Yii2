@@ -51,28 +51,6 @@ class PageController extends Controller
         return $this->render('index');
     }
 
-    public function actionDeals()
-    {
-        if (Yii::$app->user->isGuest) {
-            return $this->redirect(['user/login']);
-        }
-
-        //$user = User::findOne(Yii::$app->user->id);
-        //$deals = $user->deals;
-        //ArrayHelper::multisort($deals, ['complete', 'priority', 'promptly', 'id'], [SORT_ASC, SORT_DESC, SORT_DESC, SORT_DESC]);
-
-        $query = Deal::find()->andWhere(['user_id' => Yii::$app->user->id]);
-
-        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 15]);
-        $pages->pageSizeParam = false;
-        $deals = $query->offset($pages->offset)->limit($pages->limit)->orderBy(['complete' => SORT_ASC, 'priority' => SORT_DESC, 'promptly' => SORT_DESC, 'id' => SORT_DESC])->all();
-
-        return $this->render('desk', [
-            'deals' => $deals,
-            'pages' => $pages,
-        ]);
-    }
-
     public function actionTasks()
     {
         if (Yii::$app->user->isGuest) {
