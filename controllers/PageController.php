@@ -14,6 +14,7 @@ use app\models\User;
 use app\services\DealManageService;
 use app\services\UserManageService;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 
 class PageController extends Controller
@@ -54,6 +55,7 @@ class PageController extends Controller
         }
         $user = User::findOne(Yii::$app->user->id);
         $deals = $user->deals;
+        ArrayHelper::multisort($deals, ['complete', 'priority', 'promptly', 'id'], [SORT_ASC, SORT_DESC, SORT_DESC, SORT_DESC]);
         return $this->render('desk', [
             'deals' => $deals,
         ]);
@@ -66,6 +68,7 @@ class PageController extends Controller
         }
         $user = User::findOne(Yii::$app->user->id);
         $tasks = $user->tasks;
+        ArrayHelper::multisort($tasks, 'id', SORT_DESC);
         return $this->render('tasks', [
             'tasks' => $tasks
         ]);
