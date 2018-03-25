@@ -10,7 +10,13 @@ $form = ActiveForm::begin([
 ]); ?>
 
 <?= $form->field($model, 'name')->textInput(['maxLength' => true]) ?>
-<?= $form->field($model, 'end_date')->textInput(['value' => date('Y-m-d H:i')]) ?>
+<?// $form->field($model, 'end_date')->textInput(['value' => date('Y-m-d H:i')]) ?>
+<?= $form->field($model, 'end_date')->widget(\kartik\datetime\DateTimePicker::className(), [
+    'options' => ['placeholder' => 'Select date'],
+    'pluginOptions' => [
+        'format' => 'yyyy-mm-dd H:i',
+    ]
+]) ?>
 <?= $form->field($model, 'priority')->checkbox() ?>
 <?= $form->field($model, 'promptly')->checkbox() ?>
 <?php if ($tasks):

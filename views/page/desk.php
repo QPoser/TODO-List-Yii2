@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
+
 ?>
 
 <a href="<?=Url::to(['deal/create'])?>" class="btn btn-primary">Add deal</a>
@@ -21,4 +23,9 @@ use yii\helpers\Url;
 </div>
 
 
-<?php endforeach;
+<?php endforeach; ?>
+
+<?= LinkPager::widget([
+    'pagination' => $pages,
+    'registerLinkTags' => true
+]); ?>

@@ -1,6 +1,8 @@
 <?php
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
+
 ?>
 
 <a href="<?=Url::to(['task/create'])?>" class="btn btn-primary">Add task</a>
@@ -21,4 +23,10 @@ use yii\helpers\Url;
     </div>
 
 
-<?php endforeach;
+<?php endforeach; ?>
+
+<?= LinkPager::widget([
+    'pagination' => $pages,
+    'registerLinkTags' => true
+]); ?>
+
