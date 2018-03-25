@@ -23,6 +23,9 @@ class TaskController extends Controller
 
     public function __construct($id, $module, TaskManageService $service, array $config = [])
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['user/login']);
+        }
         $this->service = $service;
         parent::__construct($id, $module, $config);
     }

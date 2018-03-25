@@ -36,6 +36,9 @@ class PageController extends Controller
 
     public function actionDeals()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['user/login']);
+        }
         $user = User::findOne(Yii::$app->user->id);
         $deals = $user->deals;
         return $this->render('desk', [
@@ -45,6 +48,9 @@ class PageController extends Controller
 
     public function actionTasks()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['user/login']);
+        }
         $user = User::findOne(Yii::$app->user->id);
         $tasks = $user->tasks;
         return $this->render('tasks', [

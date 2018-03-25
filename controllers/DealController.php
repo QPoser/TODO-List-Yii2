@@ -24,6 +24,9 @@ class DealController extends Controller
 
     public function __construct($id, $module, DealManageService $service, array $config = [])
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['user/login']);
+        }
         $this->service = $service;
         parent::__construct($id, $module, $config);
     }
@@ -111,7 +114,7 @@ class DealController extends Controller
 
     protected function findModel($id): Deal
     {
-        if (($model = Deal::findOne($id)) !== null) {
+        if (($model = Deal::find()->andWhere(['id' => $id, 'user_id' => Yii::$app->user->id])->limit(1)->one()) !== null) {
             return $model;
         }
         throw new \RuntimeException('Deal not found.');
