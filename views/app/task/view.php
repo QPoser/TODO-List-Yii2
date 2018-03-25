@@ -12,7 +12,7 @@ use yii\helpers\Url;
         <h3>Deals of this task</h3>
         <hr>
         <?php foreach ($deals as $deal): ?>
-            <p><a href="<?=Url::to(['deal/view', 'id' => $deal->id])?>"><?=$deal->id?>. <?=$deal->name?></a></p><hr>
+            <p><a href="<?=Url::to(['deal/view/' . $deal->id])?>"><?=$deal->id?>. <?=$deal->name?></a></p><hr>
         <?php endforeach; ?>
     <?php else: ?>
         <h3>This task has not deals</h3>

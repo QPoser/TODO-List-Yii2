@@ -20,7 +20,7 @@ use yii\widgets\LinkPager;
         [
             'attribute' => 'name',
             'value' => function (Deal $model) {
-                return Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
+                return Html::a(Html::encode($model->name), ['deal/view/' . $model->id]);
             },
             'format' => 'raw',
         ],
@@ -55,20 +55,25 @@ use yii\widgets\LinkPager;
         ['class' => \yii\grid\ActionColumn::class, 'template' => '{complete} {update} {delete}', 'buttons' => [
                 'complete' => function ($url, $model) {
                     if ($model->complete) {
-                        return Html::a('<span class="glyphicon glyphicon-remove text-warning"></span>', Url::to(['deal/uncomplete', 'id' => $model->id]), [
+                        return Html::a('<span class="glyphicon glyphicon-remove text-warning"></span>', Url::to(['deal/uncomplete/' . $model->id]), [
                             'title' => 'Set uncomplete', 'data-pjax' => '0'
                         ]);
                     } else {
-                        return Html::a('<span class="glyphicon glyphicon-ok text-warning"></span>', Url::to(['deal/complete', 'id' => $model->id]), [
+                        return Html::a('<span class="glyphicon glyphicon-ok text-warning"></span>', Url::to(['deal/complete/' . $model->id]), [
                             'title' => 'Set complete', 'data-pjax' => '0'
                         ]);
                     }
                 },
                 'update' => function ($url, $model) {
-                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::to(['deal/edit', 'id' => $model->id]), [
+                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::to(['deal/edit/' . $model->id]), [
                             'title' => 'Edit', 'data-pjax' => '0'
                     ]);
-                }
+                },
+                'delete' => function ($url, $model) {
+                    return Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['deal/delete/' . $model->id]), [
+                        'title' => 'Delete', 'data-pjax' => '0'
+                    ]);
+                },
         ]],
     ],
 ]); ?>
