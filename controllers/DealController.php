@@ -138,7 +138,7 @@ class DealController extends Controller
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
-        return $this->redirect(['page/deals']);
+        return $this->redirect(['deal/deals']);
 
     }
 
