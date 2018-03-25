@@ -22,11 +22,26 @@ class TaskController extends Controller
 
     public $service;
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+                'denyCallback' => function ($rule, $action) {
+                    return Yii::$app->response->redirect(['user/login']);
+                },
+            ]
+        ];
+    }
+
     public function __construct($id, $module, TaskManageService $service, array $config = [])
     {
-        if (Yii::$app->user->isGuest) {
-            return $this->redirect(['user/login']);
-        }
         $this->service = $service;
         parent::__construct($id, $module, $config);
     }

@@ -5,6 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name' => 'Basic task manager',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['app\bootstrap\SetUp'],
     'aliases' => [

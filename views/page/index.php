@@ -1,10 +1,4 @@
-<?php
+<?php ?>
 
+<h1 style="text-align: center;"><?=Yii::$app->name?></h1>
 
-echo 'index';
-
-if (Yii::$app->user->isGuest) {
-    echo '1';
-} else {
-    echo '2';
-}

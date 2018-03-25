@@ -17,6 +17,7 @@ use app\models\User;
 use app\services\DealManageService;
 use Yii;
 use yii\data\Pagination;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 
 class DealController extends Controller
@@ -24,11 +25,26 @@ class DealController extends Controller
 
     protected $service;
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+                'denyCallback' => function ($rule, $action) {
+                    return Yii::$app->response->redirect(['user/login']);
+                },
+            ]
+        ];
+    }
+
     public function __construct($id, $module, DealManageService $service, array $config = [])
     {
-        if (Yii::$app->user->isGuest) {
-            return $this->redirect(['user/login']);
-        }
         $this->service = $service;
         parent::__construct($id, $module, $config);
     }
@@ -59,10 +75,6 @@ class DealController extends Controller
 
     public function actionDeals()
     {
-        if (Yii::$app->user->isGuest) {
-            return $this->redirect(['user/login']);
-        }
-
         $searchModel = new DealSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
