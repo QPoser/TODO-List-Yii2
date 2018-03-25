@@ -87,7 +87,7 @@ class DealController extends Controller
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
                 $this->service->edit($deal->id, $form);
-                return $this->redirect(['/app/deal/view', 'id' => $deal->id]);
+                return $this->redirect(['deal/view', 'id' => $deal->id]);
             } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());

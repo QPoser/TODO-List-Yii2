@@ -10,6 +10,7 @@ namespace app\controllers;
 
 
 use app\forms\App\Task\TaskCreateForm;
+use app\forms\App\Task\TaskEditForm;
 use app\models\App\Task;
 use app\services\TaskManageService;
 use SebastianBergmann\Timer\RuntimeException;
@@ -70,9 +71,30 @@ class TaskController extends Controller
         return $this->redirect(['page/tasks']);
     }
 
+    public function actionEdit($id)
+    {
+        $task = $this->findModel($id);
+
+        $form = new TaskEditForm($task);
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
+                $this->service->edit($task->id, $form);
+                return $this->redirect(['task/view', 'id' => $task->id]);
+            } catch (\DomainException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('/app/task/edit', [
+            'model' => $form,
+            'task' => $task,
+        ]);
+    }
+
     protected function findModel($id): Task
     {
-        if ($model = Task::find()->andWhere(['id' => $id, 'user_id' => Yii::$app->user->id])->limit(1)->one() !== null) {
+        if (($model = Task::find()->andWhere(['id' => $id, 'user_id' => Yii::$app->user->id])->limit(1)->one()) !== null) {
             return $model;
         }
         throw new \RuntimeException('Task not found');

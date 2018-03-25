@@ -43,7 +43,7 @@ class DealManageService
         return $deal;
     }
 
-    public function edit($id, DealEditForm $form): Deal
+    public function edit($id, DealEditForm $form): void
     {
         if ($form->task_id) {
             $task = $this->tasks->get($form->task_id);
