@@ -20,6 +20,8 @@ class m180325_060706_create_tasks_table extends Migration
             'created_at' => $this->integer()->unsigned(),
             'user_id' => $this->integer()->notNull(),
         ], $tableOptions);
+
+        $this->addForeignKey('{{%fk-app_deals-task_id}}', '{{%deals}}', 'task_id', '{{%tasks}}', 'id', 'SET NULL', 'RESTRICT');
     }
 
     /**
@@ -27,6 +29,7 @@ class m180325_060706_create_tasks_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('{{%fk-app_deals-task_id}}', '{{%deals}}');
         $this->dropTable('{{%tasks}}');
     }
 }

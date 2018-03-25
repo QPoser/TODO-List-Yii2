@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\models\App\Deal;
 use app\models\App\Task;
+use SebastianBergmann\Timer\RuntimeException;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
@@ -16,7 +17,11 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function findByUsername($username): self
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        $user = static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        if ($user !== null) {
+            return $user;
+        }
+        throw new \RuntimeException('User not found or not active');
     }
 
     public static function requestSignup(string $username, string $email, string $password): self

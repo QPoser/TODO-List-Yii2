@@ -20,7 +20,7 @@ use yii\db\ActiveRecord;
 class Deal extends ActiveRecord
 {
 
-    public static function create($name, $priority, $promptly, $end_date, $task_id = 0): self
+    public static function create($name, $priority, $promptly, $end_date, $task_id = null): self
     {
         $deal = new static();
         $deal->name = $name;
@@ -33,7 +33,7 @@ class Deal extends ActiveRecord
         return $deal;
     }
 
-    public function edit($name, $priority, $promptly, $end_date, $task_id = 0): void
+    public function edit($name, $priority, $promptly, $end_date, $task_id = null): void
     {
         $this->name = $name;
         $this->priority = $priority;

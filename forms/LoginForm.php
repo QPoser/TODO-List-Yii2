@@ -51,7 +51,12 @@ class LoginForm extends Model
     protected function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = User::findByUsername($this->username);
+            try {
+                $this->_user = User::findByUsername($this->username);
+            } catch (\RuntimeException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
         }
         return $this->_user;
     }

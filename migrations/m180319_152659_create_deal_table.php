@@ -21,12 +21,12 @@ class m180319_152659_create_deal_table extends Migration
             'promptly' => $this->smallInteger(),
             'priority' => $this->smallInteger(),
             'end_date' => $this->integer()->notNull(),
-            'task_id' => $this->integer()->notNull(),
+            'task_id' => $this->integer(),
             'user_id' => $this->integer()->notNull(),
         ], $tableOptions);
 
         $this->createIndex('{{%idx-app_deals-user_id}}', '{{%deals}}', 'user_id');
-        $this->createIndex('{{%idx-app_deals-task_id}}', '{{%deals}}', 'user_id');
+        $this->createIndex('{{%idx-app_deals-task_id}}', '{{%deals}}', 'task_id');
     }
 
     /**

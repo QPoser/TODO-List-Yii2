@@ -12,6 +12,7 @@ $form = ActiveForm::begin([
 <?= $form->field($model, 'username')->textInput(['maxLength' => true]) ?>
 <?= $form->field($model, 'email')->textInput(['maxLength' => true]) ?>
 <?= $form->field($model, 'password')->passwordInput(['maxLength' => true]) ?>
+<?= $form->field($model, 'captcha')->widget(\yii\captcha\Captcha::className(), ['captchaAction' => 'page/captcha']) ?>
 
 <?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
 

@@ -22,6 +22,19 @@ class PageController extends Controller
     public $deals;
     public $users;
 
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
+
     public function __construct($id, $module, DealManageService $deals, UserManageService $users, array $config = [])
     {
         $this->users = $users;

@@ -59,4 +59,23 @@ class TaskController extends Controller
         ]);
     }
 
+    public function actionDelete($id)
+    {
+        try {
+            $this->findModel($id)->delete();
+        } catch (\DomainException $e) {
+            Yii::$app->errorHandler->logException($e);
+            Yii::$app->session->setFlash('error', $e->getMessage());
+        }
+        return $this->redirect(['page/tasks']);
+    }
+
+    protected function findModel($id): Task
+    {
+        if ($model = Task::find()->andWhere(['id' => $id, 'user_id' => Yii::$app->user->id])->limit(1)->one() !== null) {
+            return $model;
+        }
+        throw new \RuntimeException('Task not found');
+    }
+
 }

@@ -94,9 +94,12 @@ class DealController extends Controller
             }
         }
 
+        $user = User::findOne(Yii::$app->user->id);
+        $tasks = $user->tasks;
         return $this->render('/app/deal/edit', [
             'model' => $form,
             'deal' => $deal,
+            'tasks' => $tasks,
         ]);
     }
 
@@ -108,7 +111,7 @@ class DealController extends Controller
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
-        return $this->redirect(['page/desk']);
+        return $this->redirect(['page/deals']);
 
     }
 
