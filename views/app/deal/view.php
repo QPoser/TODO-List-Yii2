@@ -17,5 +17,6 @@ use yii\helpers\Url;
         <p>Дата окончания: <?=$deal->end_date?> </p>
         <a href="<?=Url::to(['deal/complete', 'id' => $deal->id])?>" class="btn btn-success">Complete</a>
     <?php endif; ?>
+    <a href="<?=Url::to(['deal/edit', 'id' => $deal->id])?>" class="btn btn-primary">Edit</a>
     <a href="<?=Url::to(['deal/delete', 'id' => $deal->id])?>" class="btn btn-danger">Delete</a>
 </div>

@@ -34,12 +34,21 @@ class PageController extends Controller
         return $this->render('index');
     }
 
-    public function actionDesk()
+    public function actionDeals()
     {
         $user = User::findOne(Yii::$app->user->id);
         $deals = $user->deals;
         return $this->render('desk', [
             'deals' => $deals,
+        ]);
+    }
+
+    public function actionTasks()
+    {
+        $user = User::findOne(Yii::$app->user->id);
+        $tasks = $user->tasks;
+        return $this->render('tasks', [
+            'tasks' => $tasks
         ]);
     }
 

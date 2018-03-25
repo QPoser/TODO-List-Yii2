@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\models\App\Deal;
+use app\models\App\Task;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
@@ -54,6 +55,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function getDeals()
     {
         return $this->hasMany(Deal::className(), ['user_id' => 'id']);
+    }
+
+    public function getTasks()
+    {
+        return $this->hasMany(Task::className(), ['user_id' => 'id']);
     }
 
     public function confirmSignup(): void

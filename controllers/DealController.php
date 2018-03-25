@@ -12,6 +12,7 @@ namespace app\controllers;
 use app\forms\App\Deal\DealCreateForm;
 use app\forms\App\Deal\DealEditForm;
 use app\models\App\Deal;
+use app\models\User;
 use app\services\DealManageService;
 use Yii;
 use yii\web\Controller;
@@ -66,7 +67,11 @@ class DealController extends Controller
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
+
+        $user = User::findOne(Yii::$app->user->id);
+        $tasks = $user->tasks;
         return $this->render('/app/deal/create', [
+            'tasks' => $tasks,
             'model' => $form,
         ]);
     }
