@@ -28,6 +28,10 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'labels' => [
+            'class' => 'app\components\LabelComponent',
+            'tableName' => '{{%component_labels}}',
+        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => false,
