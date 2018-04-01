@@ -15,9 +15,6 @@ use yii\db\ActiveRecord;
 class LabelModel extends ActiveRecord
 {
 
-    public $name;
-    public $assignId;
-
     public function rules()
     {
         return [

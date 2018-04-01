@@ -2,6 +2,7 @@
 namespace app\components;
 
 use yii\base\Component;
+use yii\helpers\ArrayHelper;
 
 
 /**
@@ -15,17 +16,30 @@ class LabelComponent extends Component
 
     public $tableName = '{{%component_labels}}';
 
-    public function actionAssign($id, $label)
+    public function actionAssign($id, $text): bool
     {
         $label = new LabelModel();
         $label->assignId = $id;
-        $label->name = $label;
-        $label->save();
+        $label->name = $text;
+        if ($label->validate()) {
+            $label->save();
+            return true;
+        }
+        return false;
     }
 
-    public function actionAssignArray($id, $labels)
+    public function findById($id): array
     {
+        $labels = LabelModel::find()->andWhere(['assignId' => $id])->all();
+        return ArrayHelper::getColumn($labels, 'name');
+    }
 
+    public function removeById($id): void
+    {
+        $labels = LabelModel::find()->andWhere(['assignId' => $id])->all();
+        foreach ($labels as $label) {
+            $label->delete();
+        }
     }
 
 }

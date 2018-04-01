@@ -26,6 +26,7 @@ class DealCreateForm extends Model
     public $promptly;
     public $end_date;
     public $task_id;
+    public $labels;
 
     public function rules()
     {
@@ -34,6 +35,7 @@ class DealCreateForm extends Model
             [['priority', 'promptly'], 'boolean'],
             [['name'], 'string', 'max' => 255],
             ['task_id', 'integer'],
+            ['labels', 'string'],
         ];
     }
 }

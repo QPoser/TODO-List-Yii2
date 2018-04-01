@@ -21,6 +21,7 @@ class DealEditForm extends Model
     public $promptly;
     public $end_date;
     public $task_id;
+    public $labels;
 
     public function __construct(Deal $deal, array $config = [])
     {
@@ -30,6 +31,7 @@ class DealEditForm extends Model
             $this->promptly = $deal->promptly;
             $this->end_date = $deal->end_date;
             $this->task_id = $deal->task_id;
+            $this->labels = $deal->labels;
         }
         parent::__construct($config);
     }
@@ -41,6 +43,7 @@ class DealEditForm extends Model
             [['priority', 'promptly'], 'boolean'],
             [['name'], 'string', 'max' => 255],
             ['task_id', 'integer'],
+            ['labels', 'string']
         ];
     }
 

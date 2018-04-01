@@ -25,6 +25,7 @@ $form = ActiveForm::begin([
     ?>
     <?= $form->field($model, 'task_id')->dropDownList($arTasks, ['prompt' => 'Select task']) ?>
 <?php endif; ?>
+<?= $form->field($model, 'labels')->textInput() ?>
 
 <?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
 
