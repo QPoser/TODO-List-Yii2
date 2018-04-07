@@ -24,7 +24,15 @@ $form = ActiveForm::begin([
     ?>
     <?= $form->field($model, 'task_id')->dropDownList($arTasks, ['prompt' => 'Select task']) ?>
 <?php endif; ?>
-<?= $form->field($model, 'labels')->textInput() ?>
+
+<?php try {
+    $labelComponent = Yii::$app->labels;
+    ?>
+    <?= $form->field($model, 'labels')->textInput() ?>
+    <?php
+} catch (\yii\base\UnknownPropertyException $e) {}?>
+
+
 
 <?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
 
