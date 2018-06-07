@@ -53,7 +53,7 @@ class LoginForm extends Model
         if ($this->_user === null) {
             try {
                 $this->_user = User::findByUsername($this->username);
-            } catch (\RuntimeException $e) {
+            } catch (\DomainException $e) {
                 Yii::$app->errorHandler->logException($e);
                 Yii::$app->session->setFlash('error', $e->getMessage());
             }

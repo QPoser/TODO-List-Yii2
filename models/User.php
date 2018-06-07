@@ -21,7 +21,7 @@ class User extends ActiveRecord implements IdentityInterface
         if ($user !== null) {
             return $user;
         }
-        throw new \RuntimeException('User not found or not active');
+        throw new \DomainException('User not found or not active');
     }
 
     public static function requestSignup(string $username, string $email, string $password): self

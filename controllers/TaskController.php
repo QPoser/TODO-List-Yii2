@@ -113,7 +113,7 @@ class TaskController extends Controller
         if (($model = Task::find()->andWhere(['id' => $id, 'user_id' => Yii::$app->user->id])->limit(1)->one()) !== null) {
             return $model;
         }
-        throw new \RuntimeException('Task not found');
+        throw new \DomainException('Task not found');
     }
 
 }

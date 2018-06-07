@@ -147,7 +147,7 @@ class DealController extends Controller
         if (($model = Deal::find()->andWhere(['id' => $id, 'user_id' => Yii::$app->user->id])->limit(1)->one()) !== null) {
             return $model;
         }
-        throw new \RuntimeException('Deal not found.');
+        throw new \DomainException('Deal not found.');
     }
 
 }
