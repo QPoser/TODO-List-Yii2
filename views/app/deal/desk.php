@@ -4,7 +4,6 @@ use app\models\App\Deal;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\LinkPager;
 
 ?>
 
@@ -46,12 +45,19 @@ use yii\widgets\LinkPager;
             'format' => 'raw',
         ],
         [
-            'attribute' => 'end_date',
-            'value' => function (Deal $model) {
-                return strtotime($model->end_date) < time() ? $model->end_date . ' (overdue)' : $model->end_date;
-            },
-            'format' => 'raw',
-        ],
+		    'attribute' => 'end_date',
+		    'value' => function (Deal $model) {
+			    return strtotime($model->end_date) < time() ? $model->getEndDate() . ' (overdue)' : $model->getEndDate();
+		    },
+		    'format' => 'raw',
+	    ],
+	    [
+		    'attribute' => 'labels',
+		    'value' => function (Deal $model) {
+			    return $model->labels;
+		    },
+		    'format' => 'raw',
+	    ],
         ['class' => \yii\grid\ActionColumn::class, 'template' => '{complete} {update} {delete}', 'buttons' => [
                 'complete' => function ($url, $model) {
                     if ($model->complete) {

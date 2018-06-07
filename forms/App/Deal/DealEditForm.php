@@ -29,7 +29,7 @@ class DealEditForm extends Model
             $this->name = $deal->name;
             $this->priority = $deal->priority;
             $this->promptly = $deal->promptly;
-            $this->end_date = $deal->end_date;
+            $this->end_date = $deal->getEndDate();
             $this->task_id = $deal->task_id;
             $this->labels = $deal->labels;
         }
