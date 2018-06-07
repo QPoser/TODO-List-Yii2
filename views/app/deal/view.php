@@ -1,5 +1,7 @@
 <?php
 use yii\helpers\Url;
+
+/** @var \app\models\App\Deal $deal */
 ?>
 <div>
     <h1><?=$deal->name?></h1>
@@ -14,7 +16,7 @@ use yii\helpers\Url;
         <?php endif; ?>
         <p class="text-success"><?=$deal->promptly ? 'Срочная!' : ''?></p>
         <p class="text-success"><?=$deal->priority ? 'Важная!' : ''?></p>
-        <p>Дата окончания: <?=$deal->end_date?> </p>
+        <p>Дата окончания: <?=$deal->getEndDate()?> </p>
         <a href="<?=Url::to(['deal/complete', 'id' => $deal->id])?>" class="btn btn-success">Complete</a>
     <?php endif; ?>
     <a href="<?=Url::to(['deal/edit', 'id' => $deal->id])?>" class="btn btn-primary">Edit</a>
