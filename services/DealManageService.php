@@ -38,7 +38,7 @@ class DealManageService
             $form->promptly,
             $form->end_date,
             $form->labels,
-            $form->task_id ? $task->getPrimaryKey() : 0
+            $form->task_id ? $task->getPrimaryKey() : null
         );
         $this->deals->save($deal);
         return $deal;
@@ -56,7 +56,7 @@ class DealManageService
             $form->promptly,
             $form->end_date,
             $form->labels,
-            $form->task_id ? $task->getPrimaryKey() : 0
+            $form->task_id ? $task->getPrimaryKey() : null
         );
         $this->deals->save($deal);
     }
