@@ -51,7 +51,7 @@ class LabelBehavior extends Behavior
 
 	private function getLabelComponent()
 	{
-		return Yii::$app->get('labels');
+		return Yii::$app->get('labels', false);
 	}
 
 }
